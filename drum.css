@@ -39,6 +39,7 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    overflow: auto;
 }
 
 #drum-pads > div {
@@ -46,6 +47,7 @@ body {
     width: 100px;
     height: 80px;
     margin: 5px;
+    
 }
 
 .drum-pad {
@@ -75,11 +77,16 @@ body {
 }
 
 #display {
-    width: 180px;
+    max-width: 200px;
     height: 50px;
     background-color: #ccc;
     text-align: center;
     margin: 0 auto;
+    text-align: center;
+    padding: 12px 15px;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 5px;
 }
 
 /* toggle Button */
@@ -230,6 +237,6 @@ body {
 @media (max-width: 700px){
     #drum-machine {
         flex-direction: column;
-        flex-wrap: nowrap;
     }
+
 }

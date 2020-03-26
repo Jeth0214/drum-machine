@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drum Machine</title>
+    <link rel="icon" href="data:;base64,=">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
     <link rel="stylesheet" href="drum.css">
 </head>
@@ -19,68 +20,31 @@
             <!-- drum pads -->
             <div id="drum-pads">
                 <div>
-                    <button class="drum-pad" id="heater-1">Q
-                        <audio class="clip" id="Q" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"
-                            type="audio/mpeg">
-                        </audio>
-                    </button>
+                    <button class="drum-pad">Q<audio class="clip" type="audio/mpeg"></audio></button>
                 </div>
                 <div>
-                    <button class="drum-pad" id="heater-2">W
-                        <audio class="clip" id="W" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3"
-                            type="audio/mpeg">
-    
-                        </audio>
-                    </button>
+                    <button class="drum-pad">W<audio class="clip" type="audio/mpeg"></audio></button>
                 </div>
                 <div>
-                    <button class="drum-pad" id="heater-3">E
-                        <audio class="clip" id="E" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3"
-                            type="audio/mpeg">
-                        </audio>
-                    </button>
+                    <button class="drum-pad">E<audio class="clip" type="audio/mpeg"></audio></button>
                 </div>
                 <div>
-                    <button class="drum-pad" id="heater-4">A
-                        <audio class="clip" id="A" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3"
-                            type="audio/mpeg">
-                        </audio>
-                    </button>
+                    <button class="drum-pad">A<audio class="clip" type="audio/mpeg"></audio></button>
                 </div>
                 <div>
-                    <button class="drum-pad" id="heater-6">S
-                        <audio class="clip" id="S" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3"
-                            type="audio/mpeg">
-                        </audio>
-                    </button>
+                    <button class="drum-pad">S<audio class="clip" type="audio/mpeg"></audio></button>
                 </div>
                 <div>
-                    <button class="drum-pad" id="Dsc_Oh">D
-                        <audio class="clip" id="D" src="https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3"
-                            type="audio/mpeg">
-                        </audio>
-                    </button>
+                    <button class="drum-pad">D<audio class="clip" type="audio/mpeg"></audio></button>
                 </div>
                 <div>
-                    <button class="drum-pad" id="Kick_and_Hat">Z
-                        <audio class="clip" id="Z" src="https://s3.amazonaws.com/freecodecamp/drums/Kick_and_Hat.mp3"
-                            type="audio/mpeg">
-                        </audio>
-                    </button>
+                    <button class="drum-pad" >Z<audio class="clip" type="audio/mpeg"></audio></button>
                 </div>
                 <div>
-                    <button class="drum-pad" id="RP4_KICK_1">X
-                        <audio class="clip" id="X" src="https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3"
-                            type="audio/mpeg">
-                        </audio>
-                    </button>
+                    <button class="drum-pad" >X<audio class="clip" type="audio/mpeg"></audio></button>
                 </div>
                 <div>
-                    <button class="drum-pad" id="Cev_H2">C
-                        <audio class="clip" id="C" src="https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3"
-                            type="audio/mpeg">
-                        </audio>
-                    </button>
+                    <button class="drum-pad">C<audio class="clip"  type="audio/mpeg"></audio></button>
                 </div>
             </div>
     
@@ -89,7 +53,7 @@
                 <div class="toggle">
                     <h2>Power</h2>
                     <label class="switch">
-                        <input type="checkbox">
+                        <input type="checkbox" id="power">
                         <span class="slider"></span>
                     </label>
                 </div>
@@ -97,12 +61,12 @@
                     
                 </div>
                 <div class="range">
-                    <input type="range" name="range" id="volume">
+                    <input type="range" name="range" id="volume" min="0" max="100">
                 </div>
                 <div class="toggle">
                     <h2>Bank</h2>
                     <label class="switch">
-                        <input type="checkbox">
+                        <input type="checkbox" id="mode">
                         <span class="slider"></span>
                     </label>
                 </div>
