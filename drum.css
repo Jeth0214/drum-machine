@@ -59,6 +59,7 @@ body {
     font-weight: 600;
     border: none;
     background-color: #ccc;
+    
 }
 
 .drum-pad:active, .button-active {
