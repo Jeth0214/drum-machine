@@ -61,12 +61,12 @@ body {
     background-color: #ccc;
 }
 
-.drum-pad:active{
+.drum-pad:active, .button-active {
     background: gold;
     margin-top: 5px;
     padding-top: 5px;
 }
-.drum-pad:focus{
+.drum-pad:focus {
   outline: none;
 }
 
@@ -88,6 +88,7 @@ body {
     font-weight: 600;
     border-radius: 5px;
 }
+
 
 /* toggle Button */
 .toggle {
@@ -149,7 +150,7 @@ body {
   input[type=range] {
     -webkit-appearance: none;
     margin: 20px 0 0;
-    width: 180px;
+    width: 200px;
   }
   input[type=range]:focus {
     outline: none;

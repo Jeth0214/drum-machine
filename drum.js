@@ -13,28 +13,11 @@ function getData() {
         .catch(error => console.error(error))
 }
 
-// async function test() {
-    
-//     data$.forEach(element => {
-//         console.log(element)
-//         drumPad.forEach(el => {
-//             console.log(el)
-
-//             el.addEventListener('click', function () {
-//                 el.id = element.drumPadName[0];
-//                 el.children[0].src = element.src[0];
-//                 el.children.play();
-//             })
-//         });
-//     });
-// };
-// test()
 
 
 async function playSound(){
     const data$ = await getData();
     drumPad.forEach( el => {
-        
             data$.forEach( element => {
                 if(element.key.toUpperCase() === el.textContent){
                     el.setAttribute("id" ,element.drumPadName[0]);
@@ -72,8 +55,7 @@ async function playSound2(){
 }
 
 
-
-//value of toggle
+// press a key 
 
 
 mode.addEventListener('change', test);
@@ -89,10 +71,28 @@ function  test() {
     }
   };
 
-  volume.addEventListener('input', function ( value) {
-     
-        displayMessage.textContent = `Volume ${volume.value}`
+  volume.addEventListener('input', function () {
+    displayMessage.innerHTML = `<p> Volume ${volume.value} </p>`;
   })
+
+  
   test();
-   playSound()
-   playSound2()
+
+
+  document.onkeypress =  function(evt) {
+    evt = evt || window.event;
+    var charCode = evt.keyCode || evt.which;
+    var charStr = String.fromCharCode(charCode).toUpperCase();
+    clip.forEach ( audio => {
+        if(audio.id === charStr){
+            audio.parentElement.click();
+            audio.parentElement.classList.add("button-active");
+        }else {
+            audio.parentElement.classList.remove("button-active");
+        }
+    })
+};
+
+
+  // playSound()dqqqqq
+  // playSound2()ss
