@@ -27,6 +27,7 @@ async function playSound() {
             }
             el.addEventListener('click', function () {
                 el.children[0].play();
+                el.children[0].volume = volume.value / 100;
                 displayMessage.textContent = el.id;
             })
 
@@ -49,6 +50,7 @@ async function playSound2() {
             }
             el.addEventListener('click', function () {
                 el.children[0].play();
+                el.children[0].volume = volume.value / 100;
             })
 
 
@@ -61,7 +63,7 @@ async function playSound2() {
 bankCheckBox.addEventListener('change', pianoOrHeater);
 
 function pianoOrHeater() {
-    if (mode.checked) {
+    if (bankCheckBox.checked) {
         displayMessage.textContent = "Smooth Piano Kit";
         playSound2()
     } else {
@@ -73,9 +75,9 @@ function pianoOrHeater() {
 
 //adjust the volume
 volume.addEventListener('input', function () {
-    displayMessage.innerHTML = `<p> Volume: ${volume.value} </p>`;
+    displayMessage.innerHTML = `Volume: ${volume.value}`;
     setTimeout(() => {
-        displayMessage.children[0].style.display = 'none';
+        displayMessage.style.display = 'none';
     }, 1000)
 })
 
@@ -89,34 +91,58 @@ document.onkeypress = function (evt) {
     var charStr = String.fromCharCode(charCode).toUpperCase();
     clip.forEach(audio => {
         if (audio.id === charStr) {
-            audio.parentElement.click();
-            audio.parentElement.classList.add("button-active");
-            setTimeout(() => {
-                audio.parentElement.classList.remove("button-active");
+            console.log(audio.parentElement)
+                audio.parentElement.click();
+                audio.parentElement.classList.add("button-active");
+                setTimeout(() => {
+                    audio.parentElement.classList.remove("button-active");
             }, 100)
-
         }
     })
 };
 
 //power on and off
-powerCheckedBox.addEventListener('input', power);
+powerCheckedBox.addEventListener('change', power);
 function power() {
-    if (!this.checked) {
-        pianoOrHeater();
-        console.log('unchecked')
-    } else {
+    if (powerCheckedBox.checked) {
+
         console.log('checked')
         bankCheckBox.disabled = true;
         volume.disabled = true;
-        clip.forEach( audio => {
-            audio.currentTime = 0;
-            audio.pause();
-           
-        });
-        displayMessage.textContent = "";
-        
+
+        displayMessage.textContent = "Power Off";
+        setTimeout(() => {
+            displayMessage.style.display = "none";
+
+        }, 600)
+        clip.forEach(audio => {
+            console.log(audio.parentElement)
+            audio.muted = true;
+           audio.parentElement.classList.remove("button-active");
+            audio.parentElement.classList.add('powerOff');
+        })
+
+
+    } else {
+
+        console.log('uncheck');
+        bankCheckBox.disabled = false;
+        volume.disabled = false;
+        clip.forEach(audio => {
+            audio.muted = false;
+            audio.parentElement.classList.remove('powerOff');
+        })
+        displayMessage.style.display = "block";
+        displayMessage.textContent = "Power On";
+        setTimeout(() => {
+            displayMessage.textContent = "Heater Kit";
+
+        }, 600)
+
     }
 }
 
 power();
+
+pianoOrHeater();
+
