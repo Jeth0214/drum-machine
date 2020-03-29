@@ -11,49 +11,44 @@ const powerCheckedBox = document.querySelector('#power');
 function getData() {
     return fetch('drum.json').then((response) => response.json())
         .then((data) => data)
-        .catch(error => console.error(error))
+        .catch(error => console.error(error)
+    )
 }
 
 
 //play Heater Kit
-async function playSound() {
+async function playHeaterKit() {
     const data$ = await getData();
-    drumPad.forEach(el => {
-        data$.forEach(element => {
-            if (element.key.toUpperCase() === el.textContent) {
-                el.setAttribute("id", element.drumPadName[0]);
-                el.children[0].setAttribute("src", element.src[0]);
-                el.children[0].setAttribute("id", element.key.toUpperCase());
+    drumPad.forEach(drumKey => {
+        data$.forEach(eachKey => {
+            if (eachKey.key.toUpperCase() === drumKey.textContent) {
+                drumKey.setAttribute("id", eachKey.drumPadName[0]);
+                drumKey.children[0].setAttribute("src", eachKey.src[0]);
+                drumKey.children[0].setAttribute("id", eachKey.key.toUpperCase());
             }
-            el.addEventListener('click', function () {
-                el.children[0].play();
-                el.children[0].volume = volume.value / 100;
-                displayMessage.textContent = el.id;
+            drumKey.addEventListener('click', function () {
+                drumKey.children[0].play();
+                drumKey.children[0].volume = volume.value / 100;
+                displayMessage.textContent = drumKey.id;
             })
-
-
         })
     });
 }
 
 //play Smooth Piano Kit
-async function playSound2() {
+async function playSmoothPianoKit() {
     const data$ = await getData();
-    drumPad.forEach(el => {
-
-        data$.forEach(element => {
-            if (element.key.toUpperCase() === el.textContent) {
-                el.setAttribute("id", element.drumPadName[1]);
-                el.children[0].setAttribute("src", element.src[1]);
-                el.children[0].setAttribute("id", element.key.toUpperCase());
-
+    drumPad.forEach(drumKey => {
+        data$.forEach(eachKey => {
+            if (eachKey.key.toUpperCase() === drumKey.textContent) {
+                drumKey.setAttribute("id", eachKey.drumPadName[1]);
+                drumKey.children[0].setAttribute("src", eachKey.src[1]);
+                drumKey.children[0].setAttribute("id", eachKey.key.toUpperCase());
             }
-            el.addEventListener('click', function () {
-                el.children[0].play();
-                el.children[0].volume = volume.value / 100;
+            drumKey.addEventListener('click', function () {
+                drumKey.children[0].play();
+                drumKey.children[0].volume = volume.value / 100;
             })
-
-
         })
     });
 }
@@ -65,19 +60,19 @@ bankCheckBox.addEventListener('change', pianoOrHeater);
 function pianoOrHeater() {
     if (bankCheckBox.checked) {
         displayMessage.textContent = "Smooth Piano Kit";
-        playSound2()
+        playSmoothPianoKit()
     } else {
 
-        playSound()
+        playHeaterKit();
         displayMessage.textContent = "Heater Kit";
     }
 };
 
 //adjust the volume
 volume.addEventListener('input', function () {
-    displayMessage.innerHTML = `Volume: ${volume.value}`;
+    displayMessage.textContent = `Volume: ${volume.value}`;
     setTimeout(() => {
-        displayMessage.style.display = 'none';
+        displayMessage.textContent = '';
     }, 1000)
 })
 
@@ -85,13 +80,12 @@ volume.addEventListener('input', function () {
 
 
 // play audio when a key was pressed
-document.onkeypress = function (evt) {
+document.onkeypress = function keyPad(evt) {
     evt = evt || window.event;
     var charCode = evt.keyCode || evt.which;
     var charStr = String.fromCharCode(charCode).toUpperCase();
     clip.forEach(audio => {
         if (audio.id === charStr) {
-            console.log(audio.parentElement)
                 audio.parentElement.click();
                 audio.parentElement.classList.add("button-active");
                 setTimeout(() => {
@@ -116,7 +110,6 @@ function power() {
 
         }, 600)
         clip.forEach(audio => {
-            console.log(audio.parentElement)
             audio.muted = true;
            audio.parentElement.classList.remove("button-active");
             audio.parentElement.classList.add('powerOff');
@@ -143,6 +136,5 @@ function power() {
 }
 
 power();
-
 pianoOrHeater();
 
